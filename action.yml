@@ -1,7 +1,8 @@
 name: 'Maelstrom Worker'
 description: 'Run and install Maelstrom worker'
-icon: check-circle
-color: blue
+branding:
+  icon: check-circle
+  color: blue
 runs:
   using: "composite"
   steps:
