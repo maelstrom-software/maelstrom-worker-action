@@ -2,17 +2,13 @@
 
 # Maelstrom Worker GitHub Action
 
-[![Discord](https://img.shields.io/discord/1197610263147462736)](https://discord.gg/WGacKK5eZz)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 This GitHub action installs and runs the
 [Maelstrom](https://github.com/maelstrom-software/maelstrom) worker.
 Maelstrom is a suite of tools for running tests in isolated micro-containers
 locally on your machine or distributed across arbitrarily large clusters.
 Maelstrom currently has test runners for Rust, Go, and Python, with more on the
 way. For more information about Maelstrom in general, please see the [main
-repository](https://github.com/maelstrom-software), the
+repository](https://github.com/maelstrom-software/maelstrom), the
 [website](https://maelstrom-software.com), or the
 [documentation](https://maelstrom-software.com/doc/book/latest).
 
