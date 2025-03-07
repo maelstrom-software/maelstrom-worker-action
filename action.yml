@@ -17,6 +17,7 @@ runs:
 
     # This is necessary to run Maelstrom on recent versions of Ubuntu.
   - name: Disable Apparmor Container Restrictions for Maelstrom
+    shell: bash
     run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
     # This runs the worker. It will exit when the broker shuts down. Currently,
@@ -24,6 +25,7 @@ runs:
     # error to GitHub. We just ignore that error for now.
   - name: Run Maelstrom Worker
     run: maelstrom-worker || true
+    shell: bash
     env:
       MAELSTROM_WORKER_ARTIFACT_TRANSFER_STRATEGY: github
       MAELSTROM_WORKER_BROKER_CONNECTION: github
