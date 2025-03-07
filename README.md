@@ -9,8 +9,47 @@ distributed across arbitrarily large clusters. Maelstrom currently has test
 runners for Rust, Go, and Python, with more on the way. For more information
 about Maelstrom in general, please see the [main
 repository](https://github.com/maelstrom-software/maelstrom), the
-[website](https://maelstrom-software.com), or the
+[web site](https://maelstrom-software.com), or the
 [documentation](https://maelstrom-software.com/doc/book/latest).
+
+# Usage
+
+```yml
+jobs:
+  maelstrom-worker:
+    strategy:
+      matrix:
+        worker-number: [1, 2, 3, 4]
+
+    name: Maelstrom Worker ${{ matrix.worker-number }}
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Install and Run Maelstrom Worker
+      uses: maelstrom-software/maelstrom-worker-action@v1
+```
+
+# How to Use
+
+Run multiple Maelstrom worker jobs in parallel with Maelstrom test runners,
+like `cargo-maelstrom`, `maelstrom-go-test`, or `maelstrom-pytest`. See [this
+example workflow](https://github.com/maelstrom-software/maelstrom-examples/blob/main/.github/workflows/ci-base.yml).
+
+# What it Does
+
+This action installs
+[`maelstrom-worker`](https://maelstrom-software.com/doc/book/latest/worker.html),
+sets a [sysctl to allow unprivileged user
+namespaces](https://ubuntu.com/blog/ubuntu-23-10-restricted-unprivileged-user-namespaces),
+then runs `maelstrom-worker` until completion.
+
+The worker will connect to the broker, execute tests as long as the broker
+provides them, and then exit when the broker itself exits.
+
+# Learn More
+
+You can find documentation for running Maelstrom in GitHub
+[here](https://maelstrom-software.com/doc/book/latest/github.html).
 
 # Licensing
 
