@@ -1,0 +1,30 @@
+name: 'Maelstrom Worker'
+description: 'Run and install Maelstrom worker'
+runs:
+  using: "composite"
+  steps:
+    # This is required to get some variables that Maelstrom needs to use the
+    # artifact store.
+  - name: Expose GitHub Action Variables
+    uses: crazy-max/ghaction-github-runtime@v3
+
+    # This installs the latest worker image from GitHub.
+  - name: Install Maelstrom Worker
+    uses: jaxxstorm/action-install-gh-release@master
+    with:
+      repo: maelstrom-software/maelstrom
+      asset-name: maelstrom-worker
+
+    # This is necessary to run Maelstrom on recent versions of Ubuntu.
+  - name: Disable Apparmor Container Restrictions for Maelstrom
+    run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
+    # This runs the worker. It will exit when the broker shuts down. Currently,
+    # that results in the worker exiting with a non-0 value, which indicates an
+    # error to GitHub. We just ignore that error for now.
+  - name: Run Maelstrom Worker
+    run: maelstrom-worker || true
+    env:
+      MAELSTROM_WORKER_ARTIFACT_TRANSFER_STRATEGY: github
+      MAELSTROM_WORKER_BROKER_CONNECTION: github
+      MAELSTROM_WORKER_BROKER: 0.0.0.0:0
