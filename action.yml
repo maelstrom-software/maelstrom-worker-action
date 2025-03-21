@@ -13,7 +13,7 @@ runs:
 
     # This installs the latest worker image from GitHub.
   - name: Install Maelstrom Worker
-    uses: jaxxstorm/action-install-gh-release@v2
+    uses: jaxxstorm/action-install-gh-release@latest
     with:
       repo: maelstrom-software/maelstrom
       asset-name: maelstrom-worker
