@@ -13,10 +13,12 @@ runs:
 
     # This installs the latest worker image from GitHub.
   - name: Install Maelstrom Worker
-    uses: jaxxstorm/action-install-gh-release@master
+    uses: jaxxstorm/action-install-gh-release@v2
     with:
       repo: maelstrom-software/maelstrom
       asset-name: maelstrom-worker
+      tag: v0.14.0
+      cache: enable
 
     # This is necessary to run Maelstrom on recent versions of Ubuntu.
   - name: Disable Apparmor Container Restrictions for Maelstrom
@@ -30,6 +32,6 @@ runs:
     run: maelstrom-worker || true
     shell: bash
     env:
-      MAELSTROM_WORKER_ARTIFACT_TRANSFER_STRATEGY: github
-      MAELSTROM_WORKER_BROKER_CONNECTION: github
-      MAELSTROM_WORKER_BROKER: 0.0.0.0:0
+      MAELSTROM_CLUSTER_COMMUNICATION_STRATEGY: github
+      MAELSTROM_GITHUB_ACTIONS_TOKEN: ${{ env.ACTIONS_RUNTIME_TOKEN }}
+      MAELSTROM_GITHUB_ACTIONS_URL: ${{ env.ACTIONS_RESULTS_URL }}
