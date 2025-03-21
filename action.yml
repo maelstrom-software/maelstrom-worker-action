@@ -32,6 +32,6 @@ runs:
     run: maelstrom-worker || true
     shell: bash
     env:
-      MAELSTROM_CLUSTER_COMMUNICATIONS_STRATEGY: github
+      MAELSTROM_CLUSTER_COMMUNICATION_STRATEGY: github
       MAELSTROM_GITHUB_ACTIONS_TOKEN: ${{ env.ACTIONS_RUNTIME_TOKEN }}
       MAELSTROM_GITHUB_ACTIONS_URL: ${{ env.ACTIONS_RESULTS_URL }}
