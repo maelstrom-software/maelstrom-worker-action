@@ -3,6 +3,7 @@
 # Maelstrom Worker GitHub Action
 
 This GitHub action installs and runs the Maelstrom worker.
+
 [Maelstrom](https://github.com/maelstrom-software/maelstrom) is a suite of
 tools for running tests in isolated micro-containers locally on your machine or
 distributed across arbitrarily large clusters. Maelstrom currently has test
